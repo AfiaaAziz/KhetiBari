@@ -1,0 +1,8 @@
+node_modules/
+web/dist/
+.venv/
+backend/.venv/
+backend/__pycache__/
+*.pyc
+*.pth
+

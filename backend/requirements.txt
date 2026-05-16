@@ -1,0 +1,14 @@
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+python-multipart>=0.0.9
+torch>=2.0.0
+torchvision>=0.15.0
+Pillow>=9.0.0
+# Pin below 2.x until scipy/sklearn stacks match your env (NumPy 2 + old SciPy → import crash).
+numpy>=1.26.4,<2
+opencv-python-headless>=4.8.0
+gtts>=2.3.0
+transformers>=4.35.0
+sentencepiece>=0.1.99
+protobuf>=4.25.0
+sacremoses>=0.0.53
