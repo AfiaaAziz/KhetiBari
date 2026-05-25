@@ -48,7 +48,7 @@ export const STRINGS: Record<Lang, Record<string, string>> = {
     about_para_1:
       "Here you can upload a leaf image, see how sure the system is about the finding, and read structured advice: typical symptoms, care suggestions, and prevention. Pages work in English or Urdu so growers, students, and extension teams can share one workflow.",
     about_para_2:
-      "The analyzer works with four outcomes that match our disease library: Northern Leaf Blight, Common Rust, Gray Leaf Spot, and healthy tissue. Think of it as an early triage step — what might deserve a closer look — not a replacement for your agronomist, lab tests, or approved crop-protection labels.",
+      "The analyzer works with four disease outcomes plus a guard class for images that are not a clear maize leaf: Northern Leaf Blight, Common Rust, Gray Leaf Spot, healthy tissue, and a non-leaf / invalid-frame catch. Think of it as an early triage step — what might deserve a closer look — not a replacement for your agronomist, lab tests, or approved crop-protection labels.",
     about_para_3:
       "This site is built to stay transparent: show confidence, show why the model looked at certain leaf regions when possible, and remind you to verify anything serious in real conditions. Use it alongside local scouting and professional advice.",
     about_capabilities_title: "What you'll find here",
@@ -70,7 +70,7 @@ export const STRINGS: Record<Lang, Record<string, string>> = {
 
     services_title: "What we ship",
     services_s1_h: "Probability diagnostics",
-    services_s1_p: "Transparent scores across Northern Leaf Blight, Common Rust, Gray Leaf Spot, and Healthy.",
+    services_s1_p: "Transparent scores across Northern Leaf Blight, Common Rust, Gray Leaf Spot, Healthy, plus a non-maize-leaf guard.",
     services_s2_h: "Explainability overlays",
     services_s2_p: "Grad-CAM overlays communicate model focus to agronomists and reviewers.",
     services_s3_h: "Operational checklist",
@@ -98,9 +98,9 @@ export const STRINGS: Record<Lang, Record<string, string>> = {
     guide_scores_h: "What confidence and rejections mean",
     guide_scores_p:
       "You will see a confidence percentage. If the picture is fuzzy or two diseases look equally likely, the tool may refuse a single label. That is deliberate: pushing a random guess would be worse than asking for a sharper photo or a second sample.",
-    guide_four_h: "Four outcomes, one reference section",
+    guide_four_h: "Five model outputs, one reference section",
     guide_four_p:
-      "The analyzer maps to Northern Leaf Blight, Common Rust, Gray Leaf Spot, or Healthy — the same four themes as the Diseases page. When you need more detail on symptoms or field hygiene, open those cards next to your result.",
+      "The classifier includes Northern Leaf Blight, Common Rust, Gray Leaf Spot, Healthy, plus a guard for images that do not show a usable maize leaf. If the guard wins, you will be asked to retake the photo instead of showing a disease label. Disease detail cards stay aligned with the four conditions plus the extra reference row for invalid framing.",
     guide_remember_h: "Field reality",
     guide_remember_p:
       "Hybrid, moisture, temperature, and growth stage all change how symptoms look. Use this site as a first look during scouting, then lean on local extension, resistance traits, and spray programmes when plots are at risk.",
@@ -137,7 +137,7 @@ export const STRINGS: Record<Lang, Record<string, string>> = {
 
     warn_model_title: "Model weights missing or failed to load",
     warn_model_intro:
-      "Place new.pth at the project root (or under models/), or use models/best_corn_model.pth. You can also set KHETIBARI_MODEL_PATH to the full path of your .pth file.",
+      "Place models/best_corn_model.pth in the project (see models/), or set KHETIBARI_MODEL_PATH to the full path of your .pth file.",
 
     reject_low_h: "Image not confident enough",
     reject_low_p:
@@ -145,6 +145,9 @@ export const STRINGS: Record<Lang, Record<string, string>> = {
     reject_amb_h: "Ambiguous framing",
     reject_amb_p:
       "Top classes are too close — usually motion blur, shadows, or non-leaf clutter.",
+    reject_non_leaf_h: "Not a usable maize leaf photo",
+    reject_non_leaf_p:
+      "The model thinks this image is not a clear corn leaf for screening. Fill the frame with one maize leaf in good light, then try again.",
 
     healthy_label: "Healthy — no disease detected",
     disease_label: "Condition",
@@ -198,7 +201,7 @@ export const STRINGS: Record<Lang, Record<string, string>> = {
     about_para_1:
       "یہاں آپ پتی کی تصویر اپلوڈ کر سکتے ہیں، نظام کی یقین دہانی دیکھ سکتے ہیں، اور ترتیب وار مشورہ پڑھ سکتے ہیں: علامات، دیکھ بھال کے تجاویز، اور احتیاط۔ صفحات انگریزی اور اردو دونوں میں ہیں تاکہ کاشت کار، طلباء، اور توسیعی ٹیم ایک ہی ورک فلو استعمال کریں۔",
     about_para_2:
-      "تجزیہ چار نتائج پر کام کرتا ہے جو ہماری بیماری لائبریری سے ملتے ہیں: Northern Leaf Blight، Common Rust، Gray Leaf Spot، اور صحت مند پتا۔ اسے پہلے قدم کی جانچ سمجھیں — کیا قریب سے دیکھنا چاہیے — نہ کہ ماہر زراعت، لیبارٹری، یا منظور شدہ سپری مستقل مشورے کی جگہ۔",
+      "تجزیہ چار بیماری نتائج اور ایک گارڈ زمرہ پر کام کرتا ہے جو ایسی تصویریں روکتا ہے جس میں واضح مکئی کا پتہ نہیں: Northern Leaf Blight، Common Rust، Gray Leaf Spot، صحت مند پتا، اور غیر مکئی والی / غیر واضح فریمنگ۔ یہ پہلا قدم ہے — مستقل طور پر ماہر زراعت یا لیبارٹوری کی جگہ نہیں لیتی۔",
     about_para_3:
       "یہ سائٹ شفاف رہنے کے لیے بنائی گئی ہے: اعتماد دکھانا، ممکن ہو تو تصویر پر وضاحت، اور کسی بھی سنگین صورت میں میدان میں تصدیق کی یاد دہانی۔ اسے مقامی معائنے اور پیشہ ورانہ رہنمائی کے ساتھ استعمال کریں۔",
     about_capabilities_title: "یہاں آپ کو کیا ملے گا",
@@ -220,7 +223,8 @@ export const STRINGS: Record<Lang, Record<string, string>> = {
 
     services_title: "خدمات",
     services_s1_h: "شرح امکان",
-    services_s1_p: "علامات کی شفاف اسکورنگ۔",
+    services_s1_p:
+      "چار بیماری حالتیں، صحت مند، اور غیر مکئی پتی والی تصویر کا گارڈ — ہر زمرے کی شفاف شرح۔",
     services_s2_h: "اوورلے وضاحت",
     services_s2_p: "ماہر زراعت کے لیے Grad-CAM۔",
     services_s3_h: "آپریشنل چیک لسٹ",
@@ -248,9 +252,9 @@ export const STRINGS: Record<Lang, Record<string, string>> = {
     guide_scores_h: "اعتماد اور ''مسترد'' کا مطلب",
     guide_scores_p:
       "آپ کو شرح اعتماد نظر آئے گی۔ اگر تصویر دھندلی ہو یا دو بیماریاں برابر لگیں تو ایک ہی لیبل دینے سے انکار ہو سکتا ہے — یہ جان بوجھ کر ہے: بے بنیاد اندازہ تھوپنے سے بہتر ہے کہ واضح تصویر یا دوسرا نمونہ مانگا جائے۔",
-    guide_four_h: "چار نتائج، ایک حوالہ",
+    guide_four_h: "پانچ ماڈل نتائج، ایک حوالہ",
     guide_four_p:
-      "تجزیہ Northern Leaf Blight، Common Rust، Gray Leaf Spot، یا صحت مند پتے پر مشکل ہے — بیماریوں والے صفحے کے ساتھ ہی۔ علامات یا احتیاط کی مزید تفصیل کے لیے اُسی وقت کارڈ کھولیں۔",
+      "ماڈل میں Northern Leaf Blight، Common Rust، Gray Leaf Spot، صحت مند پتا، اور وہ زمرہ بھی ہے جو قابل استعمال مکئی کے پتے کی تصویر نہیں سمجھتا۔ اگر یہ جیتے تو بیماری کا لیبل نہیں ملے گا — دوبارہ واضح پتی کی تصویر لینے کو کہا جائے گا۔ بیماریوں کا صفحہ ان حالتوں کے کارڈز سے ہم آہنگ ہے۔",
     guide_remember_h: "میدان کی حقیقت",
     guide_remember_p:
       "ہائبرڈ، نمی، درجہ حرارت، اور نشوونما کا مرحلہ علامات بدل دیتا ہے۔ اسے معائنے میں پہلا قدم سمجھیں؛ خطرے پر مقامی توسیع، مزاحمت، اور منظور شدہ پروگرام پر بھروسہ کریں۔",
@@ -287,12 +291,15 @@ export const STRINGS: Record<Lang, Record<string, string>> = {
 
     warn_model_title: "ماڈل فائل نہیں ملی یا لوڈ نہیں ہوا",
     warn_model_intro:
-      "new.pth کو پروجیکٹ روٹ پر رکھیں (یا models/ میں)، یا models/best_corn_model.pth استعمال کریں؛ یا KHETIBARI_MODEL_PATH سے مکمل راستہ دیں۔",
+      "پروجیکٹ میں models/best_corn_model.pth رکھیں، یا KHETIBARI_MODEL_PATH سے .pth کا مکمل راستہ دیں۔",
 
     reject_low_h: "اس تصویر پر اعتماد کم ہے",
     reject_low_p: "قریب تر، واضح مکئی کا پتہ اپلوڈ کریں۔",
     reject_amb_h: "غیر واضح تصویر",
     reject_amb_p: "اعلیٰ کلاسیں بہت قریب ہیں — عموماً دھندلاپن یا سایہ۔",
+    reject_non_leaf_h: "یہ واضح مکئی کا پتہ نہیں لگتا",
+    reject_non_leaf_p:
+      "ماڈل سمجھتا ہے کہ اسکریننگ کے لیے مناسب مکئی کا پتہ نظر نہیں آ رہا۔ ایک پتے کو اچھی روشنی میں فریم بھر کر دوبارہ تصویر لیں۔",
 
     healthy_label: "صحت مند — کوئی بیماری نہیں ملی",
     disease_label: "حالت",

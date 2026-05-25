@@ -173,10 +173,18 @@ export function AnalyzePage() {
             dir={lang === "ur" ? "rtl" : "ltr"}
           >
             <p className="font-bold text-amber-950">
-              {reject.code === "low_confidence" ? t("reject_low_h") : t("reject_amb_h")}
+              {reject.code === "low_confidence"
+                ? t("reject_low_h")
+                : reject.code === "ambiguous"
+                  ? t("reject_amb_h")
+                  : t("reject_non_leaf_h")}
             </p>
             <p className="mt-2 leading-relaxed text-amber-950/88">
-              {reject.code === "low_confidence" ? t("reject_low_p") : t("reject_amb_p")}
+              {reject.code === "low_confidence"
+                ? t("reject_low_p")
+                : reject.code === "ambiguous"
+                  ? t("reject_amb_p")
+                  : t("reject_non_leaf_p")}
             </p>
           </div>
         )}

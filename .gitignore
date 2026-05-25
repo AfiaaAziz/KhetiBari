@@ -6,3 +6,6 @@ backend/__pycache__/
 *.pyc
 *.pth
 
+.torch_non_leaf_cache/
+data/non_leaf_images/
+

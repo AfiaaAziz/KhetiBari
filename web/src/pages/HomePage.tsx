@@ -47,7 +47,7 @@ export function HomePage() {
 
           <dl className="mt-16 grid grid-cols-2 gap-8 border-t border-white/12 pt-12 md:grid-cols-4 lg:mt-20">
             <Stat label={t("stat_acc")} value="93.5%" />
-            <Stat label={t("stat_cls")} value="4" />
+            <Stat label={t("stat_cls")} value="5" />
             <Stat label={t("stat_imgs")} value="4,188" />
             <Stat label={t("stat_time")} value={"<1s"} />
           </dl>

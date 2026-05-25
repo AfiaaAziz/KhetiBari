@@ -17,15 +17,21 @@ from PIL import Image
 from torchvision import transforms
 from torchvision.models import EfficientNet_B0_Weights, efficientnet_b0
 
-from advisory import ADVISORY, ADVISORY_UR, CLASS_NAMES, DISEASE_COLORS, DISPLAY_NAME_UR, IMG_SIZE
+from advisory import (
+    ADVISORY,
+    ADVISORY_UR,
+    CLASS_NAMES,
+    DISEASE_COLORS,
+    DISPLAY_NAME_EN,
+    DISPLAY_NAME_UR,
+    IMG_SIZE,
+)
 
 log = logging.getLogger(__name__)
 
 _REPO_ROOT = Path(__file__).resolve().parent.parent
-# First existing file wins. `new.pth` at repo root is the default shipping path for the latest weights.
+# First existing path wins unless KHETIBARI_MODEL_PATH is set.
 _MODEL_CANDIDATES = (
-    _REPO_ROOT / "new.pth",
-    _REPO_ROOT / "models" / "new.pth",
     _REPO_ROOT / "models" / "best_corn_model.pth",
     _REPO_ROOT / "KhetiBari" / "best_corn_model.pth",
 )
@@ -245,7 +251,7 @@ def advisory_payload_for_lang(disease: str, lang: str) -> dict[str, Any]:
     row = ADVISORY[disease].copy()
     if lang == "ur":
         row = cached_advisory_ur(disease).copy()
-    display_en = disease.replace("_", " ")
+    display_en = DISPLAY_NAME_EN.get(disease, disease.replace("_", " "))
     if lang == "ur":
         row["display_name"] = DISPLAY_NAME_UR[disease]
     else:

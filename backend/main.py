@@ -135,7 +135,7 @@ async def analyze(
         raise HTTPException(
             status_code=503,
             detail=(
-                "Model not loaded. Place new.pth at the repo root, or models/new.pth / models/best_corn_model.pth, "
+                "Model not loaded. Place models/best_corn_model.pth in the repo, "
                 "or set KHETIBARI_MODEL_PATH to your .pth file."
             ),
         )
@@ -151,6 +151,14 @@ async def analyze(
         prob_list, conf_idx = predict_probs(image, model, device)
         disease = CLASS_NAMES[conf_idx]
         confidence = prob_list[conf_idx] * 100
+
+        if disease == "Non_Leaf":
+            return {
+                "ok": False,
+                "rejected": True,
+                "code": "non_leaf",
+                "language": language,
+            }
 
         ok, reject_code = validate_probs(confidence, prob_list)
         if not ok:

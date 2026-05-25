@@ -31,7 +31,7 @@ export type AnalyzeOk = {
 export type AnalyzeRejected = {
   ok: false;
   rejected: true;
-  code: "low_confidence" | "ambiguous";
+  code: "low_confidence" | "ambiguous" | "non_leaf";
   language: "en" | "ur";
 };
 

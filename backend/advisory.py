@@ -1,6 +1,7 @@
 """Shared disease metadata: English `ADVISORY` plus static Urdu `ADVISORY_UR` when MT is off."""
 
-CLASS_NAMES = ["Blight", "Common_Rust", "Gray_Leaf_Spot", "Healthy"]
+# Order must match checkpoint `class_names` (see training notebook Module 5).
+CLASS_NAMES = ["Blight", "Common_Rust", "Gray_Leaf_Spot", "Healthy", "Non_Leaf"]
 
 IMG_SIZE = 224
 
@@ -9,6 +10,7 @@ DISEASE_COLORS = {
     "Common_Rust": "#c88a00",
     "Gray_Leaf_Spot": "#5a8a6a",
     "Healthy": "#3a7d44",
+    "Non_Leaf": "#4a6572",
 }
 
 # Urdu display names — used when MT is off and for consistent UI copy
@@ -17,6 +19,12 @@ DISPLAY_NAME_UR = {
     "Common_Rust": "عام زنگ",
     "Gray_Leaf_Spot": "سرمئی پتوں کا داغ",
     "Healthy": "صحت مند",
+    "Non_Leaf": "مکئی کا پتہ نہیں / غیر درست تصویر",
+}
+
+# English display overrides (default: title-case class key with underscores as spaces)
+DISPLAY_NAME_EN = {
+    "Non_Leaf": "Not a usable maize leaf photo",
 }
 
 ADVISORY = {
@@ -116,6 +124,29 @@ ADVISORY = {
             "Maintain proper irrigation and drainage",
             "Keep records of weather conditions",
             "Plan crop rotation for next season",
+        ],
+    },
+    "Non_Leaf": {
+        "short": "This does not look like a clear maize (corn) leaf photo for screening.",
+        "description": (
+            "The image was flagged as unlikely to show a usable maize leaf "
+            "(e.g. cluttered background, object other than corn leaf, or frame too ambiguous). "
+            "Disease probabilities from this crop are unreliable until you capture a clearer maize-leaf shot."
+        ),
+        "symptoms": [
+            "Whole frame not dominated by a single corn leaf blade",
+            "Blurry or very small leaf in frame",
+            "Non-leaf clutter, soil, stems only, or wrong plant",
+            "Extreme glare or silhouette with no lesion detail visible",
+        ],
+        "treatment": [
+            "Retake photo: fill the frame mostly with ONE upper corn leaf surface in soft daylight",
+            "Hold phone steady — avoid motion blur before retrying upload",
+            "If unsure, scout the same plant again and isolate the leaf tip/mid-blade lesions you care about",
+        ],
+        "prevention": [
+            "Centre one healthy or symptomatic blade in the preview before capture",
+            "Avoid harsh shadows covering the lesion and avoid cluttered backgrounds when possible",
         ],
     },
 }
@@ -218,6 +249,29 @@ ADVISORY_UR = {
             "آبپاشی اور نکاسی درست رکھیں",
             "موسم کا ریکارڈ رکھیں",
             "اگلے سیزن کے لیے فصل کا چکر منصوبہ بنائیں",
+        ],
+    },
+    "Non_Leaf": {
+        "short": "یہ واضح مکئی کا پتہ نہیں لگتا جس پر اسکریننگ کی جا سکے۔",
+        "description": (
+            "اس تصویر کو مکئی کے قابل استعمال پتے کے طور پر قبول نہیں کیا گیا۔ "
+            "پیچھے بہت رل مل، غیر ضروری اشیاء، یا غیر مکئی کا پودا نظر آ سکتا ہے۔ "
+            "واضح مکئی کے پتے کی تصویر کے بغیر بیماری کے امکانات قابل بھروسہ نہیں ہیں۔"
+        ),
+        "symptoms": [
+            "فرم زیادہ تر ایک مکئی کے پتے سے بھرا ہوا نہیں لگتا",
+            "پتہ دھندلا ہے یا بہت چھوٹا نظر آتا ہے",
+            "پس منظر کی رل مل، مٹی کا ڈھیل، یا دوسرا پودا زیادہ نمایاں ہے",
+            "سخت چمک یا سایہ؛ داغ نظر ہی نہیں آرہے",
+        ],
+        "treatment": [
+            "دوبارہ تصویر لیں — ایک بالائی سطح والے مکئی کے پتے کو کم روشنی میں مرکز میں لائیں",
+            "موبائل ہلائے بغیر واضح فریم لیں",
+            "ضرورت ہو تو ہی وہی پودا چیک کریں جس کے داغ دیکھنا ہیں",
+        ],
+        "prevention": [
+            "اس سے پہلے ایک پتے کو پیش نظارے میں مرکز میں لائیں",
+            "جہاں داغ دیکھ رہے ہیں وہاں سخت سایہ یا رل مل والے پس منظر سے گریز کریں",
         ],
     },
 }

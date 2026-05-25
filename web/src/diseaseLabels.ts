@@ -4,4 +4,5 @@ export const CLASS_LABEL_UR: Record<string, string> = {
   Common_Rust: "عام زنگ",
   Gray_Leaf_Spot: "سرمئی پتوں کا داغ",
   Healthy: "صحت مند",
+  Non_Leaf: "مکئی کا پتہ نہیں",
 };
